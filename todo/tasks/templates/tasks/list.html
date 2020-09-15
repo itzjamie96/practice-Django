@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>TODO</h1>
+
+<form action="{% url 'tasks:list' %}" method='POST'>
+  {% csrf_token %}
+
+  {% comment %} specify the field to access {% endcomment %}
+  {{form.singleTask}}
+  <input type="submit" name="Create Task">
+</form>
+
+{% for task in tasks %}
+  <ul>
+    <a href="{% url 'tasks:update' task.pk %}">Update</a>
+    <a href="{% url 'tasks:delete' task.pk %}">Delete</a>
+
+    {% if task.complete == True %}
+    <strike>
+      <li>{{task}}</li>
+    </strike>
+    {% else %}
+    <li>{{task}}</li>
+    {% endif %}
+  </ul>
+{% endfor %}
+
+{% endblock content %}
+
+
