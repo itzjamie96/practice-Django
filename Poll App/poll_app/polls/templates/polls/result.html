@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="">RESULT</h1>
+<br>
+<a href="{% url 'polls:index' %}">BACK</a>
+<br><br>
+
+<p>title: {{poll.question}}</p>
+<ul>
+  <li>{{poll.choice1}} - {{poll.choice1_count}}</li>
+  <li>{{poll.choice2}} - {{poll.choice2_count}}</li>
+</ul>
+
+<p>total: {{poll.total}}</p>
+
+{% endblock  %}

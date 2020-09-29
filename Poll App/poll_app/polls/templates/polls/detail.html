@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="">DETAIL</h1>
+<br>
+<a href="{% url 'polls:index' %}">BACK</a>
+<br><br>
+<p>title: {{poll.question}}</p>
+<p>created: {{poll.created_at}}</p>
+<hr>
+<div class="progress" style="height:40px;">
+
+  {% if poll.p1 == 0 and poll.p2 == 0 %}
+  <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+
+  {% else %}
+  <div class="progress-bar bg-info" role="progressbar" style="width: {{poll.p1}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">{{poll.choice1}} - {{poll.p1}}%</div>
+  <div class="progress-bar bg-warning" role="progressbar" style="width: {{poll.p2}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">{{poll.choice2}} - {{poll.p2}}%</div>
+  {% endif %}
+</div>
+<hr>
+
+<a href="{% url 'polls:updatePoll' poll.pk%}">UPDATE</a>
+<form action="{% url 'polls:deletePoll' poll.pk%}" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="DELETE">
+</form>
+
+<br>
+
+<form action="{% url 'polls:vote' poll.pk %}" method="post">
+{% csrf_token %}
+  <label>
+    <input type="radio" name="poll" value="choice1" required>
+    {{poll.choice1}}
+  </label>
+  <label>
+    <input type="radio" name="poll" value="choice2">
+    {{poll.choice2}}
+  </label>
+
+  <br>
+
+  <label>
+    <input type="text" name="comment" id="comment" required>
+  </label>
+
+  <button type="submit">SUBMIT</button>
+</form>
+
+<br>
+<hr>
+<h4>댓글 목록</h4>
+  {% if comments|length %}
+    <p>{{ comments|length }} 개의 댓글이 있습니다.</p>
+  {% endif %}
+  {% for comment in comments %}
+    <li>
+      {{ comment.content }}
+    </li>
+  {% endfor %}
+
+{% endblock  %}

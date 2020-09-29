@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>POLLS!</h1>
+<br>
+<a href="{% url 'polls:createPoll' %}">START A POLL</a>
+<a href="{% url 'polls:randomPoll' %}">CHECKOUT RANDOM POLL</a>
+<br><br>
+
+{% for poll in polls %}
+  <a href=" {% url 'polls:detail' poll.pk %}">{{poll.question}}</a>
+  <br>
+{% endfor %}
+{% endblock  %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="">UPDATE</h1>
+<br>
+<a href="{% url 'polls:index' %}">BACK</a>
+<br><br>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+
+{% endblock  %}
