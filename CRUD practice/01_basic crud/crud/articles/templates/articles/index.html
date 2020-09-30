@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>index</h1>
+
+<!-- articles = context에 있던 걔 맞음-->
+{% for article in articles %}
+  <a href="{% url 'articles:detail' article.pk %}">
+    <p>title: {{article.title}}</p>
+  </a>
+  <p>content: {{article.content}}</p>
+
+  <hr>
+{% endfor %}
+
+{% endblock content %}
+
+

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>DETAIL of pk {{article.pk}}</h1>
+
+<p>title: {{article.title}}</p>
+<p>content: {{article.content}}</p>
+<p>created at: {{article.created_at}}</p>
+<p>updated at: {{article.updated_at}}</p>
+
+{% endblock content %}
+
+
