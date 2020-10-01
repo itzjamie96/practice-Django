@@ -57,4 +57,39 @@ def create(request):
     }
     return render(request, 'articles/new.html', context)
 
-    
+
+def delete(request, pk):
+    # request랑 같이 들어온 pk를 디비에서 찾아냄
+    article = Article.objects.get(pk=pk)
+
+    # 아무나 링크로 삭제 못하게 POST인지 확인먼저
+    if request.method == 'POST':
+        article.delete()
+        return redirect('articles:index')
+
+    # GET 요청은 그냥 삭제 안하고 다시 상세페이지로
+    else:
+        return redirect('aritlces:detail', article.pk)
+
+
+def update(request, pk):
+    # 우선 바꾸고 싶은 article 객체 찾기
+    article = Article.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        # instance = find an existing model instance from database
+        # if target instance is found from the database, save() will update that instance
+        # else, save() will create a new instance of the specified model
+        form = ArticleForm(request.POST, instance=article)
+
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', article.pk)
+
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'form':form,
+        'article':article
+    }
+    return render(request, 'articles/update.html', context)

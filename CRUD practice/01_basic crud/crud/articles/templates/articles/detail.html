@@ -9,6 +9,13 @@
 <p>created at: {{article.created_at}}</p>
 <p>updated at: {{article.updated_at}}</p>
 
+<!-- 삭제 -->
+<form action="{% url 'articles:delete' article.pk %}" method="post">
+{% csrf_token %}
+  <input type="submit" value="DELETE">
+</form>
+
+
 {% endblock content %}
 
 
