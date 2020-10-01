@@ -1,0 +1,50 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- bootstrap-->
+  {% bootstrap_css %}
+
+  <!-- crud / static / stylesheets -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'crud/style.css' %}">
+  
+  
+</head>
+<body>
+
+  <!--navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'articles:index' %}">CRUD</a>
+      
+      <!--collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- navbar -->
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-link" href="{% url 'articles:index' %}">HOME</a>
+          <a class="nav-link" href="{% url 'articles:create' %}">NEW POST</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- bootstrap-->
+  {% bootstrap_javascript jquery='full'%}
+
+</body>
+</html>

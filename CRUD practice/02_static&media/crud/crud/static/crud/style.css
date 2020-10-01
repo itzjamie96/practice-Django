@@ -1,0 +1,17 @@
+.nav-link{
+    font-size: larger;
+    font-weight: 500;
+}
+
+nav .navbar-brand{
+    font-size: x-large;
+    font-weight: 500;
+}
+
+nav{
+    margin-bottom: 1em;
+}
+
+h1{
+    font-size: 2rem;
+}
