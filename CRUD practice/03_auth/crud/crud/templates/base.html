@@ -1,0 +1,57 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% bootstrap_css %}
+</head>
+<body>
+
+ <!--navbar -->
+  <nav class="navbar navbar-expand-sm navbar-light bg-warning">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'articles:index' %}">CRUD</a>
+      
+      <!--collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- navbar -->
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-link" href="{% url 'articles:index' %}">HOME</a>
+          <a class="nav-link" href="{% url 'articles:create' %}">NEW POST</a>
+        </div>
+
+        {% comment %} <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div> {% endcomment %}
+
+        <div class="navbar-nav ml-auto">
+          <a class="nav-link" href="{% url 'accounts:signup' %}">SIGNUP</a>
+          <a class="nav-link" href="{% url 'accounts:login' %}">LOGIN</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+  {% bootstrap_javascript jquery='full'%}
+</body>
+</html>
